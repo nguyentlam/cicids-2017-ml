@@ -58,8 +58,9 @@ X_train = cids_fri_transformed[:, 0:78]
 y_train = cids_fri_transformed[:, 78]
 
 X_val = cids_web_transformed[:, 0:78]
-y_val = cids_web_transformed[78]
+y_val = cids_web_transformed[:,78]
 
+print(y_val.shape)
 clf = MyGaussianMixture(
     n_components=2
 )
@@ -71,6 +72,7 @@ clf.fit(X_train, y_train)
 # Use the trained classifier to predict the classes of the test set
 y_pred = clf.predict(X_val)
 
+print(y_val.shape)
 # # Evaluate the accuracy of the classifier
 accuracy = accuracy_score(y_val, y_pred)
 print("Accuracy:", accuracy)
