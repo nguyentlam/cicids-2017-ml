@@ -98,7 +98,7 @@ gmm = MyGaussianMixture(
 
 gmm.fit(X_val_filter)
 
-y_pred = gmm.predict(X_val_filter)
+y_pred = gmm.predict(X_train, y_train)
 
 # Evaluate the accuracy of the classifier
 accuracy = accuracy_score(y_val_filter, y_pred)
