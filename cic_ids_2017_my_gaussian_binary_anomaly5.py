@@ -50,7 +50,7 @@ numberic_columns = [' Destination Port', ' Flow Duration', ' Total Fwd Packets',
        ' Active Min', 'Idle Mean', ' Idle Std', ' Idle Max', ' Idle Min']
 
 ct = ColumnTransformer(transformers = [('normalize', Normalizer(norm='l2'), numberic_columns),
-                                       ("label", OrdinalEncoder(handle_unknown='use_encoded_value', unknown_value=1), categorical_columns)], remainder = 'passthrough')
+                                       ("label", OrdinalEncoder(handle_unknown='use_encoded_value', unknown_value=10), categorical_columns)], remainder = 'passthrough')
 
 ct.fit(cids_fri)
 cids_fri_transformed = ct.transform(cids_fri)
@@ -61,6 +61,9 @@ y_train = cids_fri_transformed[:, 78]
 
 X_val = cids_web_transformed[:, 0:78]
 y_val = cids_web_transformed[:, 78]
+
+# group other abnormal label to 1
+y_val[y_val > 1] = 1
 
 gmm = GaussianMixture(
     n_components=8
