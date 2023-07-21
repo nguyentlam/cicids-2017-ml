@@ -82,7 +82,7 @@ print('threshold', threshold)
 
 score_val = clf.score_samples(X_val)
 
-y_val_anomaly = y_val[np.where(score_val < threshold & score_val > threshold2)]
+y_val_anomaly = y_val[np.where((score_val < threshold) | (score_val > threshold2))]
 
 y_val_filter2 = y_val[np.where(y_val > 1)]
 y_val_anomaly_filer = y_val_anomaly[np.where(y_val_anomaly > 1)]
