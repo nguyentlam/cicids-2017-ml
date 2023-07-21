@@ -63,14 +63,14 @@ X_val = cids_web_transformed[:, 0:78]
 y_val = cids_web_transformed[:,78]
 
 
-clf = GaussianMixture(
+gmm = GaussianMixture(
     n_components=8
 )
 
 # Train and evaluate your model
-clf.fit(X_train, y_train)
+gmm.fit(X_train, y_train)
 
-score_train = clf.score_samples(X_train)
+score_train = gmm.score_samples(X_train)
 
 mean = np.mean(score_train)
 std = np.std(score_train)
@@ -80,7 +80,7 @@ threshold = mean - 3 * std
 threshold2 = mean + 3 * std
 print('threshold', threshold)
 
-score_val = clf.score_samples(X_val)
+score_val = gmm.score_samples(X_val)
 
 ids = np.where((score_val > threshold) & (score_val < threshold2))
 y_val_filter = y_val[ids]
@@ -92,13 +92,14 @@ print('len(y_val_filter)', len(y_val_filter))
 print('len(y_val_filter2)', len(y_val_filter2))
 
 X_val_filter = X_val[ids]
-gmm = MyGaussianMixture(
-    n_components=2
+
+clf = MyGaussianMixture(
+    n_components=8
 )
 
-gmm.fit(X_val_filter)
+clf.fit(X_train, y_train)
 
-y_pred = gmm.predict(X_train, y_train)
+y_pred = clf.predict(X_val_filter)
 
 # Evaluate the accuracy of the classifier
 accuracy = accuracy_score(y_val_filter, y_pred)
