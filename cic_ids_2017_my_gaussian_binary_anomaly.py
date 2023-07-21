@@ -8,6 +8,8 @@ from sklearn.mixture import GaussianMixture
 from sklearn.model_selection import KFold, cross_val_score, train_test_split
 from sklearn.preprocessing import Normalizer, OrdinalEncoder
 
+P = 1
+
 cids_fri = pd.read_csv("Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv")
 cids_web = pd.read_csv("Wednesday-workingHours.pcap_ISCX.csv")
 
@@ -70,7 +72,7 @@ clf.fit(X_train, y_train)
 
 score_train = clf.score_samples(X_train)
 
-threshold = np.percentile(score_train, 4)
+threshold = np.percentile(score_train, P)
 
 print('threshold', threshold)
 
