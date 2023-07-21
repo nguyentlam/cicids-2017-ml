@@ -50,7 +50,7 @@ numberic_columns = [' Destination Port', ' Flow Duration', ' Total Fwd Packets',
        ' Active Min', 'Idle Mean', ' Idle Std', ' Idle Max', ' Idle Min']
 
 ct = ColumnTransformer(transformers = [('normalize', Normalizer(norm='l2'), numberic_columns),
-                                       ("label", OrdinalEncoder(handle_unknown='use_encoded_value', unknown_value=10), categorical_columns)], remainder = 'passthrough')
+                                       ("label", OrdinalEncoder(handle_unknown='use_encoded_value', unknown_value=1), categorical_columns)], remainder = 'passthrough')
 
 ct.fit(cids_fri)
 cids_fri_transformed = ct.transform(cids_fri)
