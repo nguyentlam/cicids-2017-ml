@@ -72,7 +72,10 @@ clf.fit(X_train, y_train)
 
 score_train = clf.score_samples(X_train)
 
-threshold = np.percentile(score_train, P)
+mean = np.mean(score_train)
+std = np.std(score_train)
+
+threshold = mean - 3 * std
 
 print('threshold', threshold)
 
@@ -87,6 +90,8 @@ print('y_val_anomaly', y_val_anomaly)
 print('len(y_val)', len(y_val))
 print('len(y_val_anomaly)', len(y_val_anomaly))
 print('len(y_val_anomaly_filer)', len(y_val_anomaly_filer))
+
+print('y_val_filter2', y_val_filter2)
 print('len(y_val_filter2)', len(y_val_filter2))
 
 
