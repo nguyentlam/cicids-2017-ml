@@ -76,14 +76,16 @@ print('threshold', threshold)
 
 score_val = clf.score_samples(X_val)
 
-y_val_filter = y_val[np.where(score_val < threshold)]
+y_val_anomaly = y_val[np.where(score_val < threshold)]
 
 y_val_filter2 = y_val[np.where(y_val > 1)]
+y_val_anomaly_filer = y_val_anomaly[np.where(y_val_anomaly > 1)]
 
-print('y_val_filter', y_val_filter)
+print('y_val_anomaly', y_val_anomaly)
 print('len(y_val)', len(y_val))
-print('len(y_val_filter)', len(y_val_filter))
+print('len(y_val_anomaly)', len(y_val_anomaly))
 print('len(y_val_filter2)', len(y_val_filter2))
+print('len(y_val_anomaly_filer)', len(y_val_anomaly_filer))
 
 # # Evaluate the accuracy of the classifier
 # accuracy = accuracy_score(y_val, y_pred)
