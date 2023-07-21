@@ -82,7 +82,7 @@ print('threshold', threshold)
 
 score_val = clf.score_samples(X_val)
 
-ids = np.where((score_val < threshold) & (score_val > threshold2))
+ids = np.where((score_val > threshold) & (score_val < threshold2))
 y_val_filter = y_val[ids]
 
 y_val_filter2 = y_val[np.where(y_val > 1)]
