@@ -76,7 +76,7 @@ std = np.std(score_train)
 
 threshold = mean - 3 * std
 
-threshold2 = mean + 3 * s td
+threshold2 = mean + 3 * std
 print('threshold', threshold)
 
 score_val = gmm.score_samples(X_val)
